@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+    <div class="p-3 mb-2 bg-dark text-white">
+        <div class="col-sm-20">
+            <h3 class="text-center alert alert-info">Students Record</h3>
+            <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand">Excellent Minds</a>
+                  <form action="" class="d-flex" role="search" method="get">
+                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+            </nav>
+            {% if form %}
+              <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Profile Picture</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Education</th>
+                    </tr>
+                </thead>
+                </tbody>
+                  {% for stu in stud %}
+                    <tr> 
+                        <th scope="row">{{stu.id}}</th>
+                        <td>{{stu.first_name}}</td>
+                        <td>{{stu.last_name}}</td>
+                        <td>{{stu.profile_picture}}</td>
+                        <td>{{stu.skills}}</td>
+                        <td>{{stu.education}}</td>
+                        <td>
+                        <a href="{% url 'updatedata' stu.id %}" class="btn btn-outline-warning">Update</a>
+                        <form action="{% url 'deletedata' stu.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-outline-danger" value="Delete">
+                        </form>
+                        </td>
+                    
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <a href="{% url 'add' %}" class="btn btn-info">Add New Records</a>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+</body>
+</html>

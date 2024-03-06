@@ -1,0 +1,43 @@
+{% extends 'student/base.html' %}
+{% block content %}
+<body class="p-3 mb-2 bg-dark text-white">
+    <div class="p-3 mb-2 bg-dark text-white">
+        <div class="col-sm-20">
+            <h3 class="text-center alert alert-info">Students Record</h3>
+            <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand">Excellent Minds</a>
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+            </nav>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Profile Picture</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Education</th>
+                    </tr>
+                </thead>
+                </tbody>
+                    <tr> 
+                        <th scope="row">{{stud.id}}</th>
+                        <td>{{stud.first_name}}</td>
+                        <td>{{stud.last_name}}</td>
+                        <td>{{stud.profile_picture}}</td>
+                        <td>{{stud.skills}}</td>
+                        <td>{{stud.education}}</td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+              <a href="{% url 'add' %}" class="btn btn-info">Add New Records</a>
+        </div>
+    </div>
+{% endblock content %}
